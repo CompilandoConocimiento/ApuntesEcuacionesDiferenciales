@@ -1,0 +1,160 @@
+% ****************************************************************************************
+% ************************     	TRANFORMADA DE LAPLACE	  ********************************
+% ****************************************************************************************
+
+
+% =======================================================
+% =======	ALL COMMANDS AND RULES FOR DOC 	 ============
+% =======================================================
+\documentclass[12pt]{report}							    %Type of docuemtn and size of font
+\usepackage[margin=1.2in]{geometry}							%Margins
+
+\usepackage[spanish]{babel}									%Please use spanish
+\usepackage[utf8]{inputenc}									%Please use spanish	
+\usepackage[T1]{fontenc}									%Please use spanish
+
+\usepackage{amsthm, amssymb, amsfonts}				        %Make math beautiful
+\usepackage[fleqn]{amsmath}                                 %Please make equations left
+\decimalpoint												%Make math beautiful
+\setlength{\parindent}{0pt}									%Eliminate ugly indentation
+
+\usepackage{graphicx}										%Allow to create graphics
+\usepackage{wrapfig}                                    	%Allow to create images
+\graphicspath{ {Graphics/} }                                %Where are the images :D
+\usepackage{listings}										%We will be using code here
+\usepackage[inline]{enumitem}								%We will need to enumarate
+
+\usepackage{fancyhdr}										%Lets make awesome headers/footers
+\renewcommand{\footrulewidth}{0.5pt}						%We will need this!
+\setlength{\headheight}{16pt} 								%We will need this!
+\setlength{\parskip}{0.5em}									%We will need this!
+\pagestyle{fancy}											%Lets make awesome headers/footers
+\lhead{\footnotesize{\leftmark}}							%Headers!
+\rhead{\footnotesize{\rightmark}}							%Headers!
+\lfoot{Compilando Conocimiento}								%Footers!
+\rfoot{Oscar Rosas}						                    %Footers!
+
+\author{Oscar Andrés Rosas}						            %Who I am
+
+
+
+
+% =====================================================
+% ============     	  COVER PAGE	   ================
+% =====================================================
+\begin{document}
+\begin{titlepage}
+
+	\center
+	% ============ UNIVERSITY NAME AND DATA =========
+	\textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
+	\textsc{\Large Ecuaciones Diferenciales}\\[1.0cm] 
+
+	% ============ NAME OF THE DOCUMENT  ============
+	\rule{\linewidth}{0.5mm} \\[1.0cm]
+		{ \huge \bfseries La Transformada de Laplace}\\[1.0cm] 
+	\rule{\linewidth}{0.5mm} \\[2.0cm]
+	
+	% ====== SEMI TITLE ==========
+	{\LARGE Introducción}\\[7cm] 
+	
+	% ============  MY INFORMATION  =================
+	\begin{center} \large
+	\textbf{\textsc{Autor:}}\\
+	Rosas Hernandez Oscar Andres
+	\end{center}
+
+	\vfill
+
+\end{titlepage}
+
+% =====================================================
+% ========                INDICE              =========
+% =====================================================
+\tableofcontents{}
+\clearpage
+
+% ======================================================================================
+% =============================     ESPACIOS Y SUBESPACIOS    ==========================
+% ======================================================================================
+\chapter{La Transformada de Laplace}
+    \clearpage
+
+    % =====================================================
+    % ============    ESPACIOS VECTORIALES         ========
+    % =====================================================
+    \section{Definición}
+        Dada una función f(t) definida para toda $t \leq 0$ la tranformada de
+        Laplace de f es la función F(s) definida de la Siguiente manera:
+
+        \begin{equation}   
+            L\{f(t)\} = F(s) = \int_0^\infty e^{-st} f(t) dt 
+        \end{equation}    
+
+
+        en todos los valoers de S para los cuales la Integral Impropia converge.
+        Recuerda que una Integral Impropia:
+
+        \begin{equation*}   
+            \int_0^\infty g(t) dt = \lim_{b \to \infty} \int_a^b g(t) dt
+        \end{equation*}  
+
+
+
+        % ==========================
+        % ====    EJEMPLOS    ======
+        % ==========================
+        \subsection{Ejemplo}
+            Calcule la Tranformada de Laplace cuando $f(t) = 1$
+
+            \begin{equation*}   
+            \begin{split}
+                L\{1\} = F(s) & = \int_0^\infty e^{-st} 1 dt                            \\
+                              & = \lim_{b \to \infty} \int_0^b e^{-st} dt               \\
+                              & = \lim_{b \to \infty} \frac{e^{-st}}{-s} |_0^b          \\
+                              & = \lim_{b \to \infty} \left[ \frac{1}{s} -
+                                                        \frac{e^{-sb}}{s} \right]       \\
+                              & = \frac{1}{s}
+            \end{split}
+            \end{equation*}
+
+        % ==========================
+        % ====    EJEMPLOS    ======
+        % ==========================
+        \subsection{Ejemplo}
+            Calcule la Tranformada de Laplace cuando $f(t) = e^{at}$
+
+            \begin{equation*}   
+            \begin{split}
+                L\{1\} = F(s) & = \int_0^\infty e^{-st} \cdot e^{at} dt                     \\
+                              & = \lim_{b \to \infty} \int_0^b e^{-st+at} dt                \\
+                              & = \lim_{b \to \infty} \int_0^b e^{-(s-a)t} dt               \\
+                              & = \lim_{b \to \infty} \frac{e^{-(s-a)t}}{-(s-a)} |_0^b      \\
+                              & = \lim_{b \to \infty} \left[ \frac{e^{-(s-a)b}}{-(s-a)} -   
+                                                        \frac{e^{-(s-a)0}}{-(s-a)} \right]  \\
+                              & = \frac{1}{s-a}
+            \end{split}
+            \end{equation*}
+
+
+
+% =====================================================
+% ============        BIBLIOGRAPHY   ==================
+% =====================================================
+\clearpage
+\bibliographystyle{plain}
+	\begin{thebibliography}{9}
+
+	% ============ REFERENCE #1 ========
+	\bibitem{Sitio1} 
+		ProbRob
+		\\\texttt{Youtube.com}
+
+
+	 
+
+\end{thebibliography}
+
+
+
+\end{document}

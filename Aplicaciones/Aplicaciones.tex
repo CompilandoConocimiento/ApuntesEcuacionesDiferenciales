@@ -1,0 +1,117 @@
+% ****************************************************************************************
+% *************    	APLICACIONES DE ECUACIONES DIFERENCIALES	  ************************
+% ****************************************************************************************
+
+
+% =======================================================
+% =======	ALL COMMANDS AND RULES FOR DOC 	 ============
+% =======================================================
+\documentclass[12pt]{article}							    %Type of docuemtn and size of font
+\usepackage[margin=1.2in]{geometry}							%Margins
+
+\usepackage[spanish]{babel}									%Please use spanish
+\usepackage[utf8]{inputenc}									%Please use spanish	
+\usepackage[T1]{fontenc}									%Please use spanish
+
+\usepackage{amsthm, amssymb, amsfonts}				        %Make math beautiful
+\usepackage[fleqn]{amsmath}                                 %Please make equations left
+\decimalpoint												%Make math beautiful
+\setlength{\parindent}{0pt}									%Eliminate ugly indentation
+
+\usepackage{graphicx}										%Allow to create graphics
+\usepackage{wrapfig}                                    	%Allow to create images
+\graphicspath{ {Graphics/} }                                %Where are the images :D
+\usepackage{listings}										%We will be using code here
+\usepackage[inline]{enumitem}								%We will need to enumarate
+
+\usepackage{fancyhdr}										%Lets make awesome headers/footers
+\renewcommand{\footrulewidth}{0.5pt}						%We will need this!
+\setlength{\headheight}{16pt} 								%We will need this!
+\setlength{\parskip}{0.5em}									%We will need this!
+\pagestyle{fancy}											%Lets make awesome headers/footers
+\lhead{\footnotesize{\leftmark}}							%Headers!
+\rhead{\footnotesize{\rightmark}}							%Headers!
+\lfoot{Compilando Conocimiento}								%Footers!
+\rfoot{Oscar Rosas}						                    %Footers!
+
+\author{Oscar Andrés Rosas}						            %Who I am
+
+
+
+
+% =====================================================
+% ============     	  COVER PAGE	   ================
+% =====================================================
+\begin{document}
+\begin{titlepage}
+
+	\center
+	% ============ UNIVERSITY NAME AND DATA =========
+	\textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
+	\textsc{\Large Calculo}\\[1.0cm] 
+
+	% ============ NAME OF THE DOCUMENT  ============
+	\rule{\linewidth}{0.5mm} \\[1.0cm]
+		{ \huge \bfseries Aplicaciones de Ecuaciones Diferenciales}\\[1.0cm] 
+	\rule{\linewidth}{0.5mm} \\[2.0cm]
+	
+	% ====== SEMI TITLE ==========
+	{\LARGE Ecuaciones Diferenciales}\\[7cm] 
+	
+	% ============  MY INFORMATION  =================
+	\begin{center} \large
+	\textbf{\textsc{Autor:}}\\
+	Rosas Hernandez Oscar Andres
+	\end{center}
+
+	\vfill
+
+\end{titlepage}
+
+
+
+
+% ======================================================================================
+% ==================================     DOCUMENT  =====================================
+% ======================================================================================
+
+
+
+% =====================================================
+% ========              CIRCUITOS RCL         =========
+% =====================================================
+\section{Circuitos RCL}
+
+Para trabajar circuitos tenemos que saber algunas cuantas ecuaciones:
+\begin{itemize}
+	\item Voltaje del Inductor: $V_L = L \frac{di(t)}{dt}$
+	\item Voltaje de la Resistencia: $V_R = R i(t)$
+	\item Voltaje del Capacitor: $V_C = \frac{C}{q}$
+\end{itemize}
+
+Despues podemos saber gracias a la Ley de Kirchhoff que la suma de todas las caidas de voltaje es igual a la fuerza electromotriz:
+\begin{equation}
+    \sum V_X = E
+\end{equation}
+
+
+% =====================================================
+% ============        BIBLIOGRAPHY   ==================
+% =====================================================
+\clearpage
+\bibliographystyle{plain}
+	\begin{thebibliography}{9}
+
+	% ============ REFERENCE #1 ========
+	\bibitem{Sitio1} 
+		ProbRob
+		\\\texttt{Youtube.com}
+
+
+	 
+
+\end{thebibliography}
+
+
+
+\end{document}
