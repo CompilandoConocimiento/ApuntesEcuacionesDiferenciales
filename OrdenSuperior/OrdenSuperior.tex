@@ -1,346 +1,472 @@
 % ****************************************************************************************
-% ************************     	ECUACIONES ORDEN SUPERIOR	  ****************************
+% ************************      ECUACIONES ORDEN SUPERIOR     ****************************
 % ****************************************************************************************
 
 
 % =======================================================
-% =======	ALL COMMANDS AND RULES FOR DOC 	 ============
+% =======   ALL COMMANDS AND RULES FOR DOC   ============
 % =======================================================
-\documentclass[12pt]{article}							    %Type of docuemtn and size of font
-\usepackage[margin=1.2in]{geometry}							%Margins
+\documentclass[12pt]{report}                               %Type of docuemtn and size of font
+\usepackage[margin=1.2in]{geometry}                         %Margins
 
-\usepackage[spanish]{babel}									%Please use spanish
-\usepackage[utf8]{inputenc}									%Please use spanish	
-\usepackage[T1]{fontenc}									%Please use spanish
+\usepackage[spanish]{babel}                                 %Please use spanish
+\usepackage[utf8]{inputenc}                                 %Please use spanish 
+\usepackage[T1]{fontenc}                                    %Please use spanish
 
-\usepackage{amsthm, amssymb, amsfonts}				        %Make math beautiful
+\usepackage{amsthm, amssymb, amsfonts}                      %Make math beautiful
 \usepackage[fleqn]{amsmath}                                 %Please make equations left
-\decimalpoint												%Make math beautiful
-\setlength{\parindent}{0pt}									%Eliminate ugly indentation
+\decimalpoint                                               %Make math beautiful
+\setlength{\parindent}{0pt}                                 %Eliminate ugly indentation
 
-\usepackage{graphicx}										%Allow to create graphics
-\usepackage{wrapfig}                                    	%Allow to create images
+\usepackage{graphicx}                                       %Allow to create graphics
+\usepackage{wrapfig}                                        %Allow to create images
 \graphicspath{ {Graphics/} }                                %Where are the images :D
-\usepackage{listings}										%We will be using code here
-\usepackage[inline]{enumitem}								%We will need to enumarate
+\usepackage{listings}                                       %We will be using code here
+\usepackage[inline]{enumitem}                               %We will need to enumarate
 
-\usepackage{fancyhdr}										%Lets make awesome headers/footers
-\renewcommand{\footrulewidth}{0.5pt}						%We will need this!
-\setlength{\headheight}{16pt} 								%We will need this!
-\setlength{\parskip}{0.5em}									%We will need this!
-\pagestyle{fancy}											%Lets make awesome headers/footers
-\lhead{\footnotesize{\leftmark}}							%Headers!
-\rhead{\footnotesize{\rightmark}}							%Headers!
-\lfoot{Compilando Conocimiento}								%Footers!
-\rfoot{Oscar Rosas}						                    %Footers!
+\usepackage{fancyhdr}                                       %Lets make awesome headers/footers
+\usepackage{longtable}                                      %Lets make tables awesome
 
-\author{Oscar Andrés Rosas}						            %Who I am
+\renewcommand{\footrulewidth}{0.5pt}                        %We will need this!
+\setlength{\headheight}{16pt}                               %We will need this!
+\setlength{\parskip}{0.5em}                                 %We will need this!
+\pagestyle{fancy}                                           %Lets make awesome headers/footers
+\lhead{\footnotesize{\leftmark}}                            %Headers!
+\rhead{\footnotesize{\rightmark}}                           %Headers!
+\lfoot{Compilando Conocimiento}                             %Footers!
+\rfoot{Oscar Rosas}                                         %Footers!
+
+
+
+\author{Oscar Andrés Rosas}                                 %Who I am
 
 
 
 
 % =====================================================
-% ============     	  COVER PAGE	   ================
+% ============        COVER PAGE       ================
 % =====================================================
 \begin{document}
 \begin{titlepage}
 
-	\center
-	% ============ UNIVERSITY NAME AND DATA =========
-	\textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
-	\textsc{\Large Calculo}\\[1.0cm] 
+    \center
+    % ============ UNIVERSITY NAME AND DATA =========
+    \textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
+    \textsc{\Large Ecuaciones Diferenciales}\\[1.0cm] 
 
-	% ============ NAME OF THE DOCUMENT  ============
-	\rule{\linewidth}{0.5mm} \\[1.0cm]
-		{ \huge \bfseries Ecuaciones de Orden Superior}\\[1.0cm] 
-	\rule{\linewidth}{0.5mm} \\[2.0cm]
-	
-	% ====== SEMI TITLE ==========
-	{\LARGE Variación de Parámetros y Método del Anulador}\\[7cm] 
-	
-	% ============  MY INFORMATION  =================
-	\begin{center} \large
-	\textbf{\textsc{Autor:}}\\
-	Rosas Hernandez Oscar Andres
-	\end{center}
+    % ============ NAME OF THE DOCUMENT  ============
+    \rule{\linewidth}{0.5mm} \\[1.0cm]
+        { \huge \bfseries Ecuaciones de Orden Superior}\\[1.0cm] 
+    \rule{\linewidth}{0.5mm} \\[2.0cm]
+    
+    % ====== SEMI TITLE ==========
+    {\LARGE Variación de Parámetros}\\[1cm] 
+    {\LARGE Método del Anulador}\\[1cm] 
+    {\LARGE Variación de Parámetros}\\[3cm] 
+    
+    % ============  MY INFORMATION  =================
+    \begin{center} \large
+    \textbf{\textsc{Autor:}}\\
+    Rosas Hernandez Oscar Andres
+    \end{center}
 
-	\vfill
+    \vfill
 
 \end{titlepage}
 
 
+% =====================================================
+% ========                INDICE              =========
+% =====================================================
+\tableofcontents{}
+\clearpage
+
+% ======================================================================================
+% =============================   COEFICIENTES INDETERMINADOS    =======================
+% ======================================================================================
+\chapter{Coeficientes Indeterminados}
+    \clearpage
+
+    % =====================================================
+    % ============           DEFINICION            ========
+    % =====================================================
+    \section{Definición}
+
+        Supon que tienes la siguiente ecuación del estilo:
+
+        \begin{equation}
+            y'' + ay' + by = r(x)
+        \end{equation}
+
+        Entonces sabemos que nuestra solución esta formada por:
+        \begin{equation}
+            y = y_h + y_p
+        \end{equation}
+
+        Donde sabemos que:
+        \begin{itemize}
+            \item $y_h$ Es la solución a la ecuación homogenea auxiliar
+            \item $y_p$ Es la solución particular a $r(x)$
+        \end{itemize}
+
+
+    % =====================================================
+    % ============        TABLA DE R(X)           ========
+    % =====================================================
+    \section{Forma de $y_p$ según $r(x)$}
+
+        Donde recuerda nuestra notación:
+        \begin{itemize}
+            \item $a_x, b_x, m, n, q, s$ Son coeficientes determinados
+            \item $A_x , B_x$ Son coeficientes \textbf{Indeterminados}
+            \item $k$ es la multiplicidad de cierta raíz
+        \end{itemize}
+
+        \begin{longtable}{p{70mm} || p{90mm}}
+            \renewcommand{\arraystretch}{1.5}
+            \Large Forma de $r(x)$ & \Large Forma de $y_p$      \\ [0.5ex] 
+            \hline\hline                                        \\
+            \endfirsthead
+            \Large Forma de $r(x)$ & \Large Forma de $y_p$      \\ [0.5ex] 
+            \hline\hline                                        \\
+            \endhead
+        
+            % === FORMA DE R(X) ===
+            $a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0$                                       &
+
+            % === FORMA DE Y_P ===
+            $x^k \left[ A_n x^n + A_{n-1}x^{n-1} + \cdots + A_1 x + A_0 \right]$                    \newline
+            \tiny                                                                                   \newline
+            \footnotesize Donde k = El num. de veces que 0 es raíz del Polinomio Caracteristico     \\ [6.0ex]
+
+            % --------------------------------------
+         
+            % === FORMA DE R(X) ===
+            $ae^{sx}$                                                                               &
+
+            % === FORMA DE Y_P ===
+            $x^k \left[ Ae^{sx} \right]$                                                            \newline
+            \tiny                                                                                   \newline
+            \footnotesize Donde k = El num. de veces que s es raíz del Polinomio Caracteristico     \\ [6.0ex]
+
+            % --------------------------------------
+
+            % === FORMA DE R(X) ===
+            $\left[ a_n x^n + \cdots + a_0 \right]e^{sx}$                                                                                        &
+
+            % === FORMA DE Y_P ===
+            $x^k \left[ A_n x^n + \cdots + A_0 \right]e^{sx}$                                       \newline
+            \tiny                                                                                   \newline
+            \footnotesize Donde k = El num. de veces que s es raíz del Polinomio Caracteristico     \\ [6.0ex]
+
+            % --------------------------------------
+
+            % === FORMA DE R(X) ===
+            $a \cos(qx) + b \sin(qx)$                                                               &
+
+            % === FORMA DE Y_P ===
+            $x^k \left[ A \cos(qx) + B \sin(qx) \right]$                                            \newline
+            \tiny                                                                                   \newline
+            \footnotesize Donde k = El num. de veces que $qi$ es raíz del Polinomio Caracteristico  \\ [6.0ex]
+ 
+            % --------------------------------------
+
+            % === FORMA DE R(X) ===
+            $\left[a_nx^n+\cdots+a_0\right] \sen(qx) +                                              \newline
+            \left[b_nx^n+\cdots+b_0\right]  \cos(qx) $                                              &
+
+            % === FORMA DE Y_P ===
+            $x^k \left[A_Nx^N+\cdots+A_0\right]\sen(qx) +                                           \newline
+             x^k \left[B_Nx^N+\cdots+B_0\right]\cos(qx) $                                           \newline
+            \tiny                                                                                   \newline
+            \footnotesize Donde k = El num. de veces que $qi$ es raíz del
+            Polinomio Caracteristico y donde N es el máximo entre m y n                             \\ [6.0ex]
+         
+            % --------------------------------------
+
+            % === FORMA DE R(X) ===
+            $a e^{sx} \sen(qx) + b e^{sx} \sen(qx)$                                                 &
+
+            % === FORMA DE Y_P ===
+            $x^k \left[A e^{sx} \sen(qx) + B e^{sx} \sen(qx) \right]$                               \newline
+            \tiny                                                                                   \newline
+            \footnotesize Donde k = El num. de veces que $s+qi$ es raíz del
+            Polinomio Caracteristico.                                                               \\ [6.0ex]
+
+            % --------------------------------------
+         
+            % === FORMA DE R(X) ===
+            $\left[a_nx^n+\cdots+a_0\right]e^{sx}\sen(qx) +                                         \newline
+            \left[b_nx^n+\cdots+b_0\right]e^{sx}\cos(qx)$                                           &
+
+            % === FORMA DE Y_P ===
+            $x^k \left[A_Nx^N+\cdots+A_0\right]e^{sx}\sen(qx) +                                     \newline
+             x^k \left[B_Nx^N+\cdots+B_0\right]e^{sx}\cos(qx) $                                     \newline
+            \tiny                                                                                   \newline
+            \footnotesize Donde k = El num. de veces que $s+qi$ es raíz del
+            Polinomio Caracteristico y donde N es el máximo entre m y n                             \\ [6.0ex]
+         
+        \end{longtable}
+
+
+
+
 
 
 % ======================================================================================
-% ==================================     DOCUMENT  =====================================
+% =============================      REDUCCION DE ORDEN       ==========================
 % ======================================================================================
+\chapter{Reducción de Orden}
+    \clearpage
 
+    % =====================================================
+    % ============           DEFINICION            ========
+    % =====================================================
+    \section{Definición}
 
+        Veamos la siguiente solución general de la siguiente ecuación:
 
-% =====================================================
-% ========              ?????           =========
-% =====================================================
-\section{????}
-
-
-% ==========================
-% ==== EXPLICACION =========
-% ==========================
-\subsection{¿Qué es?}
-
-Podemos escribir nuestra ecuación de esta manera:
-\begin{equation}
-    y'' + P(x) y' + Q(x) y = 0
-\end{equation}
-
-
-Donde la solución esta dada por:
-\begin{equation}
-    y = y_1(x) \int \frac{ e^{-\int P(x) dx} }{y_1^2(x)} dx
-\end{equation}
-
-% ==========================
-% ====    EJEMPLO  =========
-% ==========================
-\subsection{Ejemplo 1}
-La función $y_1 = x^2$ es una solución de $x^2 y'' + 3xy' +4y = 0$
-Encuentre la solución general de ecuación general. \\
-
-Podemos reescribirla como:
-$y'' + \frac{3}{x}y' + \frac{4}{x^2}y = 0 $
-
-Podemos ver que $P(x) = \frac{3}{x}$
-
-Por lo tanto tenemos que:
-\begin{equation*}
-    \int P(x) dx = -\ln (x^3)
-\end{equation*}
-
-Y ya sustituyendo en nuestra formula maestra:
-\begin{equation*}
-    y = x^2 \int \frac{ e^{-ln(x^3)} }{(x^2)^2(x)} dx = x^2 \int \frac{x^3}{x^4} = x^2 ln(x)
-\end{equation*}
-
-Por lo tanto nuestro resultado será:
-\begin{equation*}
-    \phi(x) = C_1 x^2 + C_2 x^2 ln(x)
-\end{equation*}
-
-
-
-
-% =====================================================
-% ========        REDUCCION DE ORDEN          =========
-% =====================================================
-\section{Reducción de Orden}
-
-
-% ==========================
-% ==== EXPLICACION =========
-% ==========================
-\subsection{¿Qué es?}
-Veamos la siguiente solución general de la siguiente ecuación:
-
-\begin{equation}
-	\frac{d^2 x}{dt^2} + 2 \lambda \frac{dx}{dt} + w^2 x = F_0 sen(\gamma t)
-\end{equation}
-
-La podemos escribir suponiendo que $\lambda ^2 - w^2 < 0$
-\begin{equation*}
-	x(t) = A e^{-\lambda t} sen\left[ \sqrt{w^2-\lambda^2} t + \phi \right] + \frac{F_0}{\sqrt{(w^2-\gamma^2)^2 + 4\lambda^2 \gamma^2} } sen(\gamma t + \theta)
-\end{equation*}
-
-Donde podemos saber que:
-\begin{equation*}
-	A = \sqrt{C_1^2 + C_2^2}
-\end{equation*}
-
-\begin{equation*}
-	sen(\phi) = \frac{C_1}{A}
-\end{equation*}
-
-\begin{equation*}
-	sen(\phi) = \frac{C_1}{A}
-\end{equation*}
-
-\begin{equation*}
-	sen(\theta) = \frac{-2\lambda \gamma}{\sqrt{(w^2-\gamma^2)^2 +4\lambda^2\gamma^2 }}
-\end{equation*}
-
-\begin{equation*}
-	cos(\theta) = \frac{w^2 - \gamma^2}{\sqrt{(w^2-\gamma^2)^2 +4\lambda^2\gamma^2 }}
-\end{equation*}
-
-
-
-
-% =====================================================
-% ========     ECUACIONES DE CAUCHY-EULER     =========
-% =====================================================
-	\clearpage
-	\section{Ecuaciones de Cauchy - Euler}
-
-	% ==========================
-	% ==== EXPLICACION =========
-	% ==========================
-		\subsection{¿Qué es?}
-		Veamos la siguiente ecuación:
-
-		\begin{equation}
-			a_n x^n \frac{d^n y}{dx^n} + a_{n-1} x^{n-1} \frac{d^{n-1} y}{dx^{n-1}} + \cdots + a_1 x \frac{dy}{dx} + a_0 y = g(x)
-		\end{equation}
-
-		Donde los coeficientes $a_n, a_{n-1}, \cdots , a_1, a_0$ son constante, entonces la ecuación se conoce como Ecuación de Cauchy - Euler.
-
-		\subsection{Solución}
-		Podemos solucionarla propiendo una función del estilo $y = x^m$ con m como incognita.
-
-		Usando mas formulazo podemos dividir los casos de las soluciones en 3 casos:
-
-		\begin{itemize}
-			\item Raices Reales con $r_1 \neq r_2$ donde la solución es $ y = C_1 x ^{r_1} + C_2 x^{r_2}$ 
-			\item Raices Iguales con $r_1 = r_2$ donde la solución es $ y = C_1 x ^{r_1} + C_2 ln(x) \cdot x^{r_1}$ 
-			\item Raices Complejas del estilo $r_x  = a \pm ib$ donde la solución es \\
-			$ y = C_1 x^a cos(b \cdot ln(x)) + C_2 x^a sen(b \cdot ln(x))$ 
-		\end{itemize}
-
-
-		Otro formulazo útil es que si tenemos de manera general una raiz de multiplicidad m tenemos que la solución sera:
-		\begin{equation}
-			x^r (ln(x))^m
-		\end{equation}
-
-
-	% ==========================
-	% ====    EJEMPLO  =========
-	% ==========================
-		\subsection{Ejemplo 1}
-		\begin{equation*}
-			x^2 \frac{d^2 y}{dx^2} - 2x \frac{dy}{dx} - 4y = 0
-		\end{equation*}
-
-		Podemos proponer nuestra función como:
-		$y = x^m$\\
-		$y' = mx^{m-1}$\\
-		$y'' = (m)(m-1)x^{m-2}$\\
-
-		Entonces tendremos que:
-		\begin{equation*}
-			x^2 (m)(m-1)x^{m-2} - 2x mx^{m-1} - 4x^m = 0
-		\end{equation*}
-
-		\begin{equation*}
-			x^m [(m)(m-1)-  2m -4] = 0
-		\end{equation*}
-		Podemos saber entonces que las raices son : $ m = 4$ y $m = -1$
-
-		Así la solución sera:
-
-		$y = C_1X^4 + C_2 X^{-1}$
-
-	% ==========================
-	% ====    EJEMPLO  =========
-	% ==========================
-		\subsection{Ejemplo 2}
-		\begin{equation*}
-			x^2 \frac{d^2 y}{dx^2} + x \frac{dy}{dx} = 0
-		\end{equation*}
-
-		Podemos proponer nuestra función como:
-		$y = x^m$\\
-		$y' = mx^{m-1}$\\
-		$y'' = (m)(m-1)x^{m-2}$\\
-
-		Entonces tendremos que:
-		\begin{equation*}
-			x^2 (m)(m-1)x^{m-2} + x mx^{m-1} = 0
-		\end{equation*}
-
-		\begin{equation*}
-			x^m [m^2 - m + m] = 0 = x^m [m^2] = 0
-		\end{equation*}
-		Podemos saber entonces que las raices son : $ m_1 = 0$ y $m_2 = 0$
-
-		Así la solución sera:
-		\begin{equation*}
-			y = C_1 x ^{r_1} + C_2 ln(x) \cdot x^{r_1}
-		\end{equation*}
-
-		Que se puede simplificar como:
-		\begin{equation*}
-			y = C_1 + C_2 ln(x)
-		\end{equation*}
-
-
-
-	% ==========================
-	% ====    EJEMPLO  =========
-	% ==========================
-		\subsection{Ejemplo 3}
-		\begin{equation*}
-			x^2 y'' + 7 x y' + 13y = 0
-		\end{equation*}
-
-		Podemos proponer nuestra función como:
-		$y = x^m$\\
-		$y' = mx^{m-1}$\\
-		$y'' = (m)(m-1)x^{m-2}$\\
-
-		Entonces tendremos que:
-		\begin{equation*}
-			x^2 \cdot (m)(m-1)x^{m-2} + 7x \cdot mx^{m-1} + 13 x^m= 0
-		\end{equation*}
-
-		Que podemos simplificar como:
-		\begin{equation*}
-			x^m [m^2 + 6m + 13] = 0
-		\end{equation*}
-
-		\begin{equation*}
-			m_{1,2} = \frac{-6 \pm \sqrt{36-52}}{2} = \frac{-6 \pm 4i}{2} = -3 \pm 2i
-		\end{equation*}
-		Podemos saber entonces que las raices son : $ -3 \pm 2i$
-
-		Así la solución sera:
-		\begin{equation*}
-			y = C_1 x^a cos(b \cdot ln(x)) + C_2 x^a sen(b \cdot ln(x))
-		\end{equation*}
-
-		Que se puede simplificar como:
-		\begin{equation*}
-			y = C_1 x^{-3} cos(2 \cdot ln(x)) + C_2 x^{-3} sen(2 \cdot ln(x))
-		\end{equation*}
-
-	% ==========================
-	% ====    EJEMPLO  =========
-	% ==========================
-		\subsection{Ejemplo 4}
-		\begin{equation*}
-			x^3 y''' -x^2y'' + xy' = 0
-		\end{equation*}
-
-		Podemos proponer nuestra función como:
-		$y = x^m$\\
-		$y' = mx^{m-1}$\\
-		$y'' = (m)(m-1)x^{m-2}$\\
-		$y''' = (m)(m-1)(m-2)x^{m-3}$\\
-
-		Entonces tendremos que:
-		\begin{equation*}
-			x^3 \cdot (m)(m-1)(m-2)x^{m-3} -x^2 \cdot (m)(m-1)x^{m-2} + x \cdot mx^{m-1} = 0
-		\end{equation*}
-
-		Que podemos simplificar como:
-		\begin{equation*}
-			x^m [(m)(m-1)(m-2) - (m)(m-1) + m ] = x^m[(m^2-m)(m-2) - (m^2-m) + m] 
-												= x^m[ m^3 - 4m^2 + 4m] 
-		\end{equation*}
-		Podemos saber entonces que las raices son : $m_1 = 0$ y para las otras dos $m_{2,3} = 2$
-
-		Así la solución sera:
-		\begin{equation*}
-			y = C_1 x ^{r_1} + C_2 x^2 + C_3 x^2 ln(x)
-		\end{equation*}
+        \begin{equation}
+            \frac{d^2 x}{dt^2} + 2 \lambda \frac{dx}{dt} + w^2 x = F_0 sen(\gamma t)
+        \end{equation}
+
+        La podemos escribir suponiendo que $\lambda ^2 - w^2 < 0$
+        \begin{equation*}
+            x(t) = A e^{-\lambda t} sen\left[ \sqrt{w^2-\lambda^2} t + \phi \right] + \frac{F_0}{\sqrt{(w^2-\gamma^2)^2 + 4\lambda^2 \gamma^2} } sen(\gamma t + \theta)
+        \end{equation*}
+
+        Donde podemos saber que:
+        \begin{equation*}
+            A = \sqrt{C_1^2 + C_2^2}
+        \end{equation*}
+
+        \begin{equation*}
+            sen(\phi) = \frac{C_1}{A}
+        \end{equation*}
+
+        \begin{equation*}
+            sen(\phi) = \frac{C_1}{A}
+        \end{equation*}
+
+        \begin{equation*}
+            sen(\theta) = \frac{-2\lambda \gamma}{\sqrt{(w^2-\gamma^2)^2 +4\lambda^2\gamma^2 }}
+        \end{equation*}
+
+        \begin{equation*}
+            cos(\theta) = \frac{w^2 - \gamma^2}{\sqrt{(w^2-\gamma^2)^2 +4\lambda^2\gamma^2 }}
+        \end{equation*}
+
+
+% ======================================================================================
+% =============================   ECUACIONES DE CAUCHY-EULER    ========================
+% ======================================================================================
+\chapter{Ecuaciones de Cauchy - Euler}
+    \clearpage
+
+    % =====================================================
+    % ============           DEFINICION            ========
+    % =====================================================
+    \section{Definición}
+
+        Veamos la siguiente ecuación:
+
+        \begin{equation}
+            a_n x^n \frac{d^n y}{dx^n} + a_{n-1} x^{n-1} \frac{d^{n-1} y}{dx^{n-1}} + \cdots + a_1 x \frac{dy}{dx} + a_0 y = g(x)
+        \end{equation}
+
+        Donde los coeficientes $a_n, a_{n-1}, \cdots , a_1, a_0$ son constante, entonces la ecuación se conoce como Ecuación de Cauchy - Euler.
+
+        \subsection{Solución}
+        Podemos solucionarla propiendo una función del estilo $y = x^m$ con m como incognita.
+
+        Usando mas formulazo podemos dividir los casos de las soluciones en 3 casos:
+
+        \begin{itemize}
+            \item Raices Reales con $r_1 \neq r_2$ donde la solución es $ y = C_1 x ^{r_1} + C_2 x^{r_2}$ 
+            \item Raices Iguales con $r_1 = r_2$ donde la solución es $ y = C_1 x ^{r_1} + C_2 ln(x) \cdot x^{r_1}$ 
+            \item Raices Complejas del estilo $r_x  = a \pm ib$ donde la solución es \\
+            $ y = C_1 x^a cos(b \cdot ln(x)) + C_2 x^a sen(b \cdot ln(x))$ 
+        \end{itemize}
+
+
+        Otro formulazo útil es que si tenemos de manera general una raiz de multiplicidad m tenemos que la solución sera:
+        \begin{equation}
+            x^r (ln(x))^m
+        \end{equation}
+
+
+    % ==========================
+    % ====    EJEMPLO  =========
+    % ==========================
+        \subsection{Ejemplo 1}
+        \begin{equation*}
+            x^2 \frac{d^2 y}{dx^2} - 2x \frac{dy}{dx} - 4y = 0
+        \end{equation*}
+
+        Podemos proponer nuestra función como:
+        $y = x^m$\\
+        $y' = mx^{m-1}$\\
+        $y'' = (m)(m-1)x^{m-2}$\\
+
+        Entonces tendremos que:
+        \begin{equation*}
+            x^2 (m)(m-1)x^{m-2} - 2x mx^{m-1} - 4x^m = 0
+        \end{equation*}
+
+        \begin{equation*}
+            x^m [(m)(m-1)-  2m -4] = 0
+        \end{equation*}
+        Podemos saber entonces que las raices son : $ m = 4$ y $m = -1$
+
+        Así la solución sera:
+
+        $y = C_1X^4 + C_2 X^{-1}$
+
+    % ==========================
+    % ====    EJEMPLO  =========
+    % ==========================
+        \subsection{Ejemplo 2}
+        \begin{equation*}
+            x^2 \frac{d^2 y}{dx^2} + x \frac{dy}{dx} = 0
+        \end{equation*}
+
+        Podemos proponer nuestra función como:
+        $y = x^m$\\
+        $y' = mx^{m-1}$\\
+        $y'' = (m)(m-1)x^{m-2}$\\
+
+        Entonces tendremos que:
+        \begin{equation*}
+            x^2 (m)(m-1)x^{m-2} + x mx^{m-1} = 0
+        \end{equation*}
+
+        \begin{equation*}
+            x^m [m^2 - m + m] = 0 = x^m [m^2] = 0
+        \end{equation*}
+        Podemos saber entonces que las raices son : $ m_1 = 0$ y $m_2 = 0$
+
+        Así la solución sera:
+        \begin{equation*}
+            y = C_1 x ^{r_1} + C_2 ln(x) \cdot x^{r_1}
+        \end{equation*}
+
+        Que se puede simplificar como:
+        \begin{equation*}
+            y = C_1 + C_2 ln(x)
+        \end{equation*}
+
+    % ==========================
+    % ====    EJEMPLO  =========
+    % ==========================
+        \subsection{Ejemplo 3}
+        \begin{equation*}
+            x^2 y'' + 7 x y' + 13y = 0
+        \end{equation*}
+
+        Podemos proponer nuestra función como:
+        $y = x^m$\\
+        $y' = mx^{m-1}$\\
+        $y'' = (m)(m-1)x^{m-2}$\\
+
+        Entonces tendremos que:
+        \begin{equation*}
+            x^2 \cdot (m)(m-1)x^{m-2} + 7x \cdot mx^{m-1} + 13 x^m= 0
+        \end{equation*}
+
+        Que podemos simplificar como:
+        \begin{equation*}
+            x^m [m^2 + 6m + 13] = 0
+        \end{equation*}
+
+        \begin{equation*}
+            m_{1,2} = \frac{-6 \pm \sqrt{36-52}}{2} = \frac{-6 \pm 4i}{2} = -3 \pm 2i
+        \end{equation*}
+        Podemos saber entonces que las raices son : $ -3 \pm 2i$
+
+        Así la solución sera:
+        \begin{equation*}
+            y = C_1 x^a cos(b \cdot ln(x)) + C_2 x^a sen(b \cdot ln(x))
+        \end{equation*}
+
+        Que se puede simplificar como:
+        \begin{equation*}
+            y = C_1 x^{-3} cos(2 \cdot ln(x)) + C_2 x^{-3} sen(2 \cdot ln(x))
+        \end{equation*}
+
+    % ==========================
+    % ====    EJEMPLO  =========
+    % ==========================
+        \subsection{Ejemplo 4}
+        \begin{equation*}
+            x^3 y''' -x^2y'' + xy' = 0
+        \end{equation*}
+
+        Podemos proponer nuestra función como:
+        $y = x^m$\\
+        $y' = mx^{m-1}$\\
+        $y'' = (m)(m-1)x^{m-2}$\\
+        $y''' = (m)(m-1)(m-2)x^{m-3}$\\
+
+        Entonces tendremos que:
+        \begin{equation*}
+            x^3 \cdot (m)(m-1)(m-2)x^{m-3} -x^2 \cdot (m)(m-1)x^{m-2} + x \cdot mx^{m-1} = 0
+        \end{equation*}
+
+        Que podemos simplificar como:
+        \begin{equation*}
+            x^m [(m)(m-1)(m-2) - (m)(m-1) + m ] = x^m[(m^2-m)(m-2) - (m^2-m) + m] 
+                                                = x^m[ m^3 - 4m^2 + 4m] 
+        \end{equation*}
+        Podemos saber entonces que las raices son : $m_1 = 0$ y para las otras dos $m_{2,3} = 2$
+
+        Así la solución sera:
+        \begin{equation*}
+            y = C_1 x ^{r_1} + C_2 x^2 + C_3 x^2 ln(x)
+        \end{equation*}
+
+
+% ======================================================================================
+% =============================    ????                        ==========================
+% ======================================================================================
+\chapter{?????}
+    \clearpage
+
+    Podemos escribir nuestra ecuación de esta manera:
+    \begin{equation}
+        y'' + P(x) y' + Q(x) y = 0
+    \end{equation}
+
+    Donde la solución esta dada por:
+    \begin{equation}
+        y = y_1(x) \int \frac{ e^{-\int P(x) dx} }{y_1^2(x)} dx
+    \end{equation}
+
+    % ==========================
+    % ====    EJEMPLO  =========
+    % ==========================
+    \subsubsection{Ejemplo 1}
+    La función $y_1 = x^2$ es una solución de $x^2 y'' + 3xy' +4y = 0$
+    Encuentre la solución general de ecuación general. \\
+
+    Podemos reescribirla como:
+    $y'' + \frac{3}{x}y' + \frac{4}{x^2}y = 0 $
+
+    Podemos ver que $P(x) = \frac{3}{x}$
+
+    Por lo tanto tenemos que:
+    \begin{equation*}
+        \int P(x) dx = -\ln (x^3)
+    \end{equation*}
+
+    Y ya sustituyendo en nuestra formula maestra:
+    \begin{equation*}
+        y = x^2 \int \frac{ e^{-ln(x^3)} }{(x^2)^2(x)} dx = x^2 \int \frac{x^3}{x^4} = x^2 ln(x)
+    \end{equation*}
+
+    Por lo tanto nuestro resultado será:
+    \begin{equation*}
+        \phi(x) = C_1 x^2 + C_2 x^2 ln(x)
+    \end{equation*}
 
 
 
@@ -349,15 +475,15 @@ Donde podemos saber que:
 % =====================================================
 \clearpage
 \bibliographystyle{plain}
-	\begin{thebibliography}{9}
+    \begin{thebibliography}{9}
 
-	% ============ REFERENCE #1 ========
-	\bibitem{Sitio1} 
-		ProbRob
-		\\\texttt{Youtube.com}
+    % ============ REFERENCE #1 ========
+    \bibitem{Sitio1} 
+        ProbRob
+        \\\texttt{Youtube.com}
 
 
-	 
+     
 
 \end{thebibliography}
 
