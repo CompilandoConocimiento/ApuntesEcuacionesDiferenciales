@@ -6,14 +6,14 @@
 % =======================================================
 % =======	ALL COMMANDS AND RULES FOR DOC 	 ============
 % =======================================================
-\documentclass[12pt]{article}                               %Type of docuemtn and size of font
+\documentclass[12pt]{report}                                %Type of docuemtn and size of font
 \usepackage[margin=1.2in]{geometry}                         %Margins
 
 \usepackage[spanish]{babel}                                 %Please use spanish
 \usepackage[utf8]{inputenc}                                 %Please use spanish 
 \usepackage[T1]{fontenc}                                    %Please use spanish
 
-\usepackage{amsthm, amssymb, amsfonts}                      %Make math beautiful
+\usepackage{amsthm, amssymb, amsfonts, mathrsfs}            %Make math beautiful
 \usepackage[fleqn]{amsmath}                                 %Please make equations left
 \decimalpoint                                               %Make math beautiful
 \setlength{\parindent}{0pt}                                 %Eliminate ugly indentation
@@ -25,6 +25,8 @@
 \usepackage[inline]{enumitem}                               %We will need to enumarate
 
 \usepackage{fancyhdr}                                       %Lets make awesome headers/footers
+\usepackage{longtable}                                      %Lets make tables awesome
+
 \renewcommand{\footrulewidth}{0.5pt}                        %We will need this!
 \setlength{\headheight}{16pt}                               %We will need this!
 \setlength{\parskip}{0.5em}                                 %We will need this!
@@ -83,11 +85,11 @@
     % ============           DEFINICION            ========
     % =====================================================
     \section{Definición}
-        Dada una función f(t) definida para toda $t \leq 0$ la tranformada de
+        Dada una función f(t) definida para toda $t \geq 0$ la tranformada de
         Laplace de f es la función F(s) definida de la Siguiente manera:
 
         \begin{equation}   
-            L\{f(t)\} = F(s) = \int_0^\infty e^{-st} f(t) dt 
+            \mathscr{L}\{f(t)\} = F(s) = \int_0^\infty e^{-st} f(t) dt 
         \end{equation}    
 
 
@@ -99,39 +101,94 @@
         \end{equation*}  
 
 
+    % =====================================================
+    % =====     TABLA DE TRANSFORMACION            ========
+    % =====================================================
+    \clearpage
+    \section{Tabla de Transformación}
+
+        \begin{longtable}{p{60mm} || p{70mm}}
+            \renewcommand{\arraystretch}{1.5}
+            \Huge $f(s)$ & \Huge $\mathscr{L}\{f(s)\} = F(s)$                                   \\ [1.5ex] 
+            \hline\hline                                                                        \\
+            \endfirsthead   
+            \Huge $f(s)$ & \Huge $\mathscr{L}\{f(s)\} = F(s)$                                   \\ [1.5ex]
+            \hline\hline                                                                   
+            \endhead
+
+            \Large $k$                               &\Large               $\frac{k}{s}$        \\ [3.0ex]
+            \Large $e^{at}$                          &\Large                $\frac{1}{s-a}$     \\ [3.0ex]
+
+        \end{longtable}
+
+
+    % =====================================================
+    % ========    DEMOSTRACIONES DE LA TABLA       ========
+    % =====================================================
+    \clearpage
+    \section{Demostraciones de la Tabla}
 
         % ==========================
-        % ====    EJEMPLOS    ======
+        % ====       k        ======
         % ==========================
-        \subsection{Ejemplo}
-            Calcule la Tranformada de Laplace cuando $f(t) = 1$
+        \subsection{$f(t) = k$}
+            Calcule la Tranformada de Laplace cuando $f(t) = k$
 
-            \begin{equation*}   
+            Recuerda que podemos hacer que: $\mathscr{L}\{k\} = k \cdot \mathscr{L}\{1\}$
+            \begin{equation*}
             \begin{split}
-                L\{1\} = F(s) & = \int_0^\infty e^{-st} 1 dt                            \\
-                              & = \lim_{b \to \infty} \int_0^b e^{-st} dt               \\
-                              & = \lim_{b \to \infty} \frac{e^{-st}}{-s} |_0^b          \\
-                              & = \lim_{b \to \infty} \left[ \frac{1}{s} -
-                                                        \frac{e^{-sb}}{s} \right]       \\
-                              & = \frac{1}{s}
+                \mathscr{L}\{1\} = F(s) 
+                            & = \int_0^\infty e^{-st} 1 dt                                              \\
+                            & = \lim_{b \to \infty} \int_0^b e^{-st} dt                                 \\
+                            & = \lim_{b \to \infty} \frac{e^{-st}}{-s} |_0^b                            \\
+                            & = \lim_{b \to \infty} \left[ \frac{1}{s} - \frac{e^{-sb}}{s} \right]      \\
+                            & = \frac{1}{s}
             \end{split}
             \end{equation*}
 
+            Por lo tanto:
+            \begin{equation}   
+                \mathscr{L}\{k\} = \frac{k}{s}
+            \end{equation}
+
         % ==========================
-        % ====    EJEMPLOS    ======
+        % ====    e^at        ======
         % ==========================
-        \subsection{Ejemplo}
+        \subsection{$f(t) = e^{at}$}
             Calcule la Tranformada de Laplace cuando $f(t) = e^{at}$
 
             \begin{equation*}   
             \begin{split}
-                L\{1\} = F(s) & = \int_0^\infty e^{-st} \cdot e^{at} dt                     \\
-                              & = \lim_{b \to \infty} \int_0^b e^{-st+at} dt                \\
-                              & = \lim_{b \to \infty} \int_0^b e^{-(s-a)t} dt               \\
-                              & = \lim_{b \to \infty} \frac{e^{-(s-a)t}}{-(s-a)} |_0^b      \\
-                              & = \lim_{b \to \infty} \left[ \frac{e^{-(s-a)b}}{-(s-a)} -   
-                                                        \frac{e^{-(s-a)0}}{-(s-a)} \right]  \\
-                              & = \frac{1}{s-a}
+                \mathscr{L}\{e^{at}\}
+                    = F(s) & = \int_0^\infty e^{-st} \cdot e^{at} dt                                                 \\
+                    & = \lim_{b \to \infty} \int_0^b e^{-st+at} dt                                                   \\
+                    & = \lim_{b \to \infty} \int_0^b e^{-(s-a)t} dt                                                  \\
+                    & = \lim_{b \to \infty} \frac{e^{-(s-a)t}}{-(s-a)} |_0^b                                         \\
+                    & = \lim_{b \to \infty} \left[ \frac{e^{-(s-a)b}}{-(s-a)} -  \frac{e^{-(s-a)0}}{-(s-a)} \right]  \\
+                    & = \frac{1}{s-a}
+            \end{split}
+            \end{equation*}
+
+
+    % =====================================================
+    % ========          EJEMPLOS UTILES            ========
+    % =====================================================
+    \clearpage
+    \section{Ejemplos Útiles}
+
+        % ==========================
+        % ====   EJEMPLOS     ======
+        % ==========================
+        \subsubsection{$f(t) = e^{t+7}$}
+            Calcule la Tranformada de Laplace cuando $f(t) = e^{t+7}$
+
+            \begin{equation*}   
+            \begin{split}
+                \mathscr{L}\{e^{t+7}\}  =                                                       \\
+                            & = \mathscr{L} \{ e^t \cdot e^7 \}                                 \\
+                            & = e^7 \cdot \mathscr{L} \{ e^t \}                                 \\
+                            & = e^7 \frac{1}{s-1}                                               \\
+                            & = \frac{e^7}{s-1}                                                 \\
             \end{split}
             \end{equation*}
 
