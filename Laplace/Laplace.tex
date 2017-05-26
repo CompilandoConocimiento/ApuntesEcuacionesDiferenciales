@@ -8,6 +8,7 @@
 % =======================================================
 \documentclass[12pt]{report}                                %Type of docuemtn and size of font
 \usepackage[margin=1.2in]{geometry}                         %Margins
+\usepackage{hyperref}                                       %Create MetaData for a PDF
 
 \usepackage[spanish]{babel}                                 %Please use spanish
 \usepackage[utf8]{inputenc}                                 %Please use spanish 
@@ -93,7 +94,7 @@
         \end{equation}    
 
 
-        en todos los valoers de S para los cuales la Integral Impropia converge.
+        en todos los valores de S para los cuales la Integral Impropia converge.
         Recuerda que una Integral Impropia:
 
         \begin{equation*}   
@@ -109,16 +110,22 @@
 
         \begin{longtable}{p{60mm} || p{70mm}}
             \renewcommand{\arraystretch}{1.5}
-            \Huge $f(s)$ & \Huge $\mathscr{L}\{f(s)\} = F(s)$                                   \\ [1.5ex] 
+            \Huge $f(t)$ & \Huge $\mathscr{L}\{f(t)\} = F(s)$                                   \\ [1.5ex] 
             \hline\hline                                                                        \\
             \endfirsthead   
-            \Huge $f(s)$ & \Huge $\mathscr{L}\{f(s)\} = F(s)$                                   \\ [1.5ex]
+            \Huge $f(t)$ & \Huge $\mathscr{L}\{f(t)\} = F(s)$                                   \\ [1.5ex]
             \hline\hline                                                                   
             \endhead
 
-            \Large $k$                               &\Large               $\frac{k}{s}$        \\ [3.0ex]
-            \Large $e^{at}$                          &\Large                $\frac{1}{s-a}$     \\ [3.0ex]
+            \Large $k$                               &\Large      $\dfrac{k}{s}$                \\ [3.0ex]
+            \Large $e^{at}$                          &\Large      $\dfrac{1}{s-a}$              \\ [3.0ex]
+            \Large $sen(kt)$                         &\Large      $\dfrac{k}{s^2+k^2}$          \\ [3.0ex]
+            \Large $cos(kt)$                         &\Large      $\dfrac{s}{s^2+k^2}$          \\ [3.0ex]
+            \Large $senh(kt)$                        &\Large      $\dfrac{k}{s^2-k^2}$          \\ [3.0ex]
+            \Large $cosh(kt)$                        &\Large      $\dfrac{s}{s^2-k^2}$          \\ [3.0ex]
+            \Large $g'(t)$                           &\Large      $s\mathscr{L}\{g(t)\} -f(0)$  \\ [3.0ex]
 
+ 
         \end{longtable}
 
 
@@ -170,6 +177,108 @@
             \end{equation*}
 
 
+        % ==========================
+        % ====    sen(kt)     ======
+        % ==========================
+        \subsection{$f(t) = sen(kt)$}
+            Calcule la Tranformada de Laplace cuando $f(t) = sen(kt)$
+
+            \begin{equation*}   
+            \begin{split}
+                \mathscr{L}\{sen(kt)\}
+                    = F(s) & = \mathscr{L}\left\{ \frac{e^{kti} - e^{-kti}}{2i} \right\}             \\
+                    & = \frac{1}{2i} \left(\mathscr{L}\{e^{kti}\}-\mathscr{L}\{e^{-kti}\}\right)     \\
+                    & = \frac{1}{2i} \left( \frac{1}{s-ki} - \frac{1}{s+ki} \right)                  \\
+                    & = \frac{1}{2i} \left( \frac{s+ki -(s-ki)}{s^2+k^2} \right)                     \\
+                    & = \frac{1}{2i} \left( \frac{2ki}{s^2+k^2} \right)                              \\
+                    & = \frac{k}{s^2+k^2} \\
+            \end{split}
+            \end{equation*}
+
+        % ==========================
+        % ====    cos(kt)     ======
+        % ==========================
+        \subsection{$f(t) = cos(kt)$}
+            Calcule la Tranformada de Laplace cuando $f(t) = cos(kt)$
+
+            \begin{equation*}   
+            \begin{split}
+                \mathscr{L}\{cos(kt)\}
+                    = F(s) & = \mathscr{L}\left\{ \frac{e^{kti} + e^{-kti}}{2i} \right\}             \\
+                    & = \frac{1}{2i} \left(\mathscr{L}\{e^{kti}\}+\mathscr{L}\{e^{-kti}\}\right)     \\
+                    & = \frac{1}{2i} \left( \frac{1}{s-ki} + \frac{1}{s+ki} \right)                  \\
+                    & = \frac{1}{2i} \left( \frac{s-ki+s+ki}{s^2+k^2} \right)                        \\
+                    & = \frac{1}{2i} \left( \frac{2si}{s^2+k^2} \right)                              \\
+                    & = \frac{s}{s^2+k^2}                                                            \\
+            \end{split}
+            \end{equation*}
+
+        % ==========================
+        % ====    senh(kt)    ======
+        % ==========================
+        \clearpage
+        \subsection{$f(t) = senh(kt)$}
+            Calcule la Tranformada de Laplace cuando $f(t) = senh(kt)$
+
+            \begin{equation*}   
+            \begin{split}
+                \mathscr{L}\{senh(kt)\}
+                    = F(s) & = \mathscr{L}\left\{ \frac{e^{kt} - e^{-kt}}{2i} \right\}             \\
+                    & = \frac{1}{2} \left(\mathscr{L}\{e^{kt}\}-\mathscr{L}\{e^{-kt}\}\right)      \\
+                    & = \frac{1}{2} \left( \frac{1}{s-k} - \frac{1}{s+k} \right)                   \\
+                    & = \frac{1}{2} \left( \frac{s+k-(s-k)}{s^2-k^2} \right)                       \\
+                    & = \frac{1}{2} \left( \frac{2k}{s^2-k^2} \right)                              \\
+                    & = \frac{k}{s^2-k^2}                                                          \\
+            \end{split}
+            \end{equation*}
+
+
+        % ==========================
+        % ====    cosh(kt)    ======
+        % ==========================
+        \subsection{$f(t) = cosh(kt)$}
+            Calcule la Tranformada de Laplace cuando $f(t) = cosh(kt)$
+
+            \begin{equation*}   
+            \begin{split}
+                \mathscr{L}\{cosh(kt)\}
+                    = F(s) & = \mathscr{L}\left\{ \frac{e^{kt} + e^{-kt}}{2i} \right\}             \\
+                    & = \frac{1}{2} \left(\mathscr{L}\{e^{kt}\}-\mathscr{L}\{e^{-kt}\}\right)      \\
+                    & = \frac{1}{2} \left( \frac{1}{s-k} + \frac{1}{s+k} \right)                   \\
+                    & = \frac{1}{2} \left( \frac{s+k+s-k}{s^2-k^2} \right)                         \\
+                    & = \frac{1}{2} \left( \frac{2s}{s^2-k^2} \right)                              \\
+                    & = \frac{s}{s^2-k^2}                                                          \\
+            \end{split}
+            \end{equation*}
+
+
+        % ==========================
+        % ====    Derivadas   ======
+        % ==========================
+        \clearpage
+        \subsection{$f(t) = g'(t)$}
+            Calcule la Tranformada de Laplace cuando $f(t) = cosh(kt)$
+
+            Recuerda que vamos a usar este cambio de variable:
+            \begin{itemize}
+                \item $u=e^{-st} \quad \to \quad du=-se^{-st}dt$
+                \item $dv=g'(t)  \quad \to \quad v =g(t)$ 
+            \end{itemize}
+
+            \begin{equation*}   
+            \begin{split}
+                    \mathscr{L}\{g'(t)\} = F(s) 
+                            & = \int_0^\infty e^{-st} g'(t) dt                                      \\
+                            & = \to_{Aplicando Cambios}                                             \\
+                            & = e^{-st} f(t)|_0^\infty - \int_0^\infty -se^{-st} g(t) dt            \\
+                            & = e^{-st} f(t)|_0^\infty + s\int_0^\infty e^{-st} g(t) dt             \\
+                            & = e^{-st} f(t)|_0^\infty + s\mathscr{L}\{g(t)\}                       \\
+                            & = (e^{-s\infty} f(\infty))-(e^{-s0} f(0)) + s\mathscr{L}\{g(t)\}      \\
+                            & = -f(0) + s\mathscr{L}\{g(t)\}                                        \\
+                            & = s\mathscr{L}\{g(t)\} -f(0)                                          \\
+            \end{split}
+            \end{equation*}
+
     % =====================================================
     % ========          EJEMPLOS UTILES            ========
     % =====================================================
@@ -191,6 +300,39 @@
                             & = \frac{e^7}{s-1}                                                 \\
             \end{split}
             \end{equation*}
+
+
+% ======================================================================================
+% ======================        ECUACIONES CON  LAPLACE       ==========================
+% ======================================================================================
+\chapter{Ecuaciones con Laplace}
+
+
+    % =====================================================
+    % ========          ECUACIONES CON LAPLACE     ========
+    % =====================================================
+    \clearpage
+    \section{Ecuaciones de 2do Grado}
+
+        % ==========================
+        % ====   EJEMPLOS     ======
+        % ==========================
+        \subsubsection{$y'+ay=0$}
+            Usando la Transformada de Laplace:
+
+            \begin{equation*}   
+            \begin{split}
+                \mathscr{L}\{ y'-ay \} &= L\{0\}                            \\
+                \mathscr{L}\{y'\}-a\mathscr{L}\{y\} &= L\{0\}               \\
+                s\mathscr{L}\{y\}-y(0)-a\mathscr{L}\{y\} &= 0               \\
+                (s-a)\mathscr{L}\{y\} &= y(0)                               \\
+                \mathscr{L}\{y\} &= \frac{y(0)}{s-a}                        \\
+                \mathscr{L}\{y\} &= y(0) \mathscr{L}\{e^{ax}\}              \\
+                \mathscr{L}\{y\} &= \mathscr{L}\{y(0) \cdot e^{ax}\}        \\
+                y &= y(0) \cdot e^{ax}                                      \\
+            \end{split}
+            \end{equation*}
+
 
 
 
