@@ -6,7 +6,7 @@
 % =======================================================
 % =======   ALL COMMANDS AND RULES FOR DOC   ============
 % =======================================================
-\documentclass[12pt]{report}                               %Type of docuemtn and size of font
+\documentclass[12pt]{report}                                %Type of docuemtn and size of font
 \usepackage[margin=1.2in]{geometry}                         %Margins
 
 \usepackage[spanish]{babel}                                 %Please use spanish
@@ -35,9 +35,6 @@
 \rhead{\footnotesize{\rightmark}}                           %Headers!
 \lfoot{Compilando Conocimiento}                             %Footers!
 \rfoot{Oscar Rosas}                                         %Footers!
-
-
-
 \author{Oscar Andrés Rosas}                                 %Who I am
 
 
@@ -282,47 +279,62 @@
                 c_1 + c_2x + c_3e^{-x} + \frac{x^2}{2}
             \end{equation*}
 
+
 % ======================================================================================
 % =============================      REDUCCION DE ORDEN       ==========================
 % ======================================================================================
 \chapter{Reducción de Orden}
     \clearpage
 
-    % =====================================================
-    % ============           DEFINICION            ========
-    % =====================================================
-    \section{Definición}
 
-        Veamos la siguiente solución general de la siguiente ecuación:
+    % ==========================
+    % ====  REDUCIR ORDEN  =====
+    % ==========================
+    \section{Reducir Orden}
 
+        Podemos escribir nuestra ecuación de esta manera:
         \begin{equation}
-            \frac{d^2 x}{dt^2} + 2 \lambda \frac{dx}{dt} + w^2 x = F_0 sen(\gamma t)
+            y'' + P(x) y' + Q(x) y = 0
         \end{equation}
 
-        La podemos escribir suponiendo que $\lambda ^2 - w^2 < 0$
+        Donde ahora que YA conocemos a $y_1(x)$
+
+        Donde la solución esta dada por:
+        \begin{equation}
+            y = y_1(x) \int \frac{ e^{-\int P(x) dx} }{y_1^2} dx
+        \end{equation}
+
+    % ==========================
+    % ====    EJEMPLO  =========
+    % ==========================
+    \clearpage
+    \subsubsection{Ejemplo 1}
+        La función $y_1 = x^2$ es una solución de $x^2 y'' - 3xy' +4y = 0$
+        Encuentre la solución general de ecuación general. \\
+
+        Podemos reescribirla como:
+        $y'' + \frac{-3}{x}y' + \frac{4}{x^2}y = 0 $
+
+        Podemos ver que $P(x) = \frac{3}{x}$
+
+        Por lo tanto tenemos que:
         \begin{equation*}
-            x(t) = A e^{-\lambda t} sen\left[ \sqrt{w^2-\lambda^2} t + \phi \right] + \frac{F_0}{\sqrt{(w^2-\gamma^2)^2 + 4\lambda^2 \gamma^2} } sen(\gamma t + \theta)
+            \int P(x) dx = \int \frac{-3}{x} = -3 \int \frac{1}{x} = -\ln (x^3)
         \end{equation*}
 
-        Donde podemos saber que:
+        Y ya sustituyendo en nuestra formula maestra:
         \begin{equation*}
-            A = \sqrt{C_1^2 + C_2^2}
+        \begin{split}
+            y &= y_1 \int \frac{ e^{-\int P(x) dx} }{y_1^2} dx          \\ 
+            y &= x^2 \int \frac{ e^{\ln(x^3)} }{(x^2)^2} dx             \\
+            y &= x^2 \int \frac{x^3}{x^4}dx = x^2 \int \frac{1}{x} dx   \\
+            y &= x^2 \ln(x)
+        \end{split}
         \end{equation*}
 
+        Por lo tanto nuestro resultado será:
         \begin{equation*}
-            sen(\phi) = \frac{C_1}{A}
-        \end{equation*}
-
-        \begin{equation*}
-            sen(\phi) = \frac{C_1}{A}
-        \end{equation*}
-
-        \begin{equation*}
-            sen(\theta) = \frac{-2\lambda \gamma}{\sqrt{(w^2-\gamma^2)^2 +4\lambda^2\gamma^2 }}
-        \end{equation*}
-
-        \begin{equation*}
-            cos(\theta) = \frac{w^2 - \gamma^2}{\sqrt{(w^2-\gamma^2)^2 +4\lambda^2\gamma^2 }}
+            \phi(x) = C_1 x^2 + C_2 x^2 ln(x)
         \end{equation*}
 
 
@@ -352,22 +364,28 @@
 
         \begin{itemize}
             \item Raices Reales con $r_1 \neq r_2$ donde la solución es $ y = C_1 x ^{r_1} + C_2 x^{r_2}$ 
-            \item Raices Iguales con $r_1 = r_2$ donde la solución es $ y = C_1 x ^{r_1} + C_2 ln(x) \cdot x^{r_1}$ 
-            \item Raices Complejas del estilo $r_x  = a \pm ib$ donde la solución es \\
-            $ y = C_1 x^a cos(b \cdot ln(x)) + C_2 x^a sen(b \cdot ln(x))$ 
+            \item Raices Iguales con $r_1 = r_2$ donde la solución es $ y = C_1 x ^{r_1} + C_2 x^{r_1} \ln(x)$ 
+            \item Raices Complejas del estilo $r_x  = a \pm ib$ donde la solución es:\\
+            \begin{equation*}
+            \begin{split}
+                y &= C_1 x^{a+bi} + C_2 x^{a-bi}\\
+                y &= C_1 x^a cos(b \cdot \ln(x)) + C_2 x^a sen(b \cdot \ln(x))
+            \end{split}
+            \end{equation*}
         \end{itemize}
 
 
         Otro formulazo útil es que si tenemos de manera general una raiz de multiplicidad m tenemos que la solución sera:
         \begin{equation}
-            x^r (ln(x))^m
+            x^r + x^r \ln(x) + x^r (\ln(x))^2 + \cdots + x^r (\ln(x))^{m-1}
         \end{equation}
 
 
     % ==========================
     % ====    EJEMPLO  =========
     % ==========================
-        \subsection{Ejemplo 1}
+        \clearpage
+        \subsubsection{Ejemplo 1}
         \begin{equation*}
             x^2 \frac{d^2 y}{dx^2} - 2x \frac{dy}{dx} - 4y = 0
         \end{equation*}
@@ -389,12 +407,13 @@
 
         Así la solución sera:
 
-        $y = C_1X^4 + C_2 X^{-1}$
+        $y = C_1x^4 + C_2 x^{-1}$
 
     % ==========================
     % ====    EJEMPLO  =========
     % ==========================
-        \subsection{Ejemplo 2}
+        \clearpage
+        \subsubsection{Ejemplo 2}
         \begin{equation*}
             x^2 \frac{d^2 y}{dx^2} + x \frac{dy}{dx} = 0
         \end{equation*}
@@ -427,7 +446,8 @@
     % ==========================
     % ====    EJEMPLO  =========
     % ==========================
-        \subsection{Ejemplo 3}
+        \clearpage
+        \subsubsection{Ejemplo 3}
         \begin{equation*}
             x^2 y'' + 7 x y' + 13y = 0
         \end{equation*}
@@ -465,7 +485,8 @@
     % ==========================
     % ====    EJEMPLO  =========
     % ==========================
-        \subsection{Ejemplo 4}
+        \clearpage
+        \subsubsection{Ejemplo 4}
         \begin{equation*}
             x^3 y''' -x^2y'' + xy' = 0
         \end{equation*}
@@ -493,49 +514,6 @@
             y = C_1 x ^{r_1} + C_2 x^2 + C_3 x^2 ln(x)
         \end{equation*}
 
-
-% ======================================================================================
-% =============================    ????                        ==========================
-% ======================================================================================
-\chapter{?????}
-    \clearpage
-
-    Podemos escribir nuestra ecuación de esta manera:
-    \begin{equation}
-        y'' + P(x) y' + Q(x) y = 0
-    \end{equation}
-
-    Donde la solución esta dada por:
-    \begin{equation}
-        y = y_1(x) \int \frac{ e^{-\int P(x) dx} }{y_1^2(x)} dx
-    \end{equation}
-
-    % ==========================
-    % ====    EJEMPLO  =========
-    % ==========================
-    \subsubsection{Ejemplo 1}
-    La función $y_1 = x^2$ es una solución de $x^2 y'' + 3xy' +4y = 0$
-    Encuentre la solución general de ecuación general. \\
-
-    Podemos reescribirla como:
-    $y'' + \frac{3}{x}y' + \frac{4}{x^2}y = 0 $
-
-    Podemos ver que $P(x) = \frac{3}{x}$
-
-    Por lo tanto tenemos que:
-    \begin{equation*}
-        \int P(x) dx = -\ln (x^3)
-    \end{equation*}
-
-    Y ya sustituyendo en nuestra formula maestra:
-    \begin{equation*}
-        y = x^2 \int \frac{ e^{-ln(x^3)} }{(x^2)^2(x)} dx = x^2 \int \frac{x^3}{x^4} = x^2 ln(x)
-    \end{equation*}
-
-    Por lo tanto nuestro resultado será:
-    \begin{equation*}
-        \phi(x) = C_1 x^2 + C_2 x^2 ln(x)
-    \end{equation*}
 
 
 
