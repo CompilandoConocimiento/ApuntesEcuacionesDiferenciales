@@ -2,16 +2,17 @@
 \contentsline {chapter}{\numberline {1}La Transformada de Laplace}{2}{chapter.1}
 \contentsline {section}{\numberline {1.1}Definici\IeC {\'o}n}{3}{section.1.1}
 \contentsline {section}{\numberline {1.2}Tabla de Transformaci\IeC {\'o}n}{4}{section.1.2}
-\contentsline {section}{\numberline {1.3}Demostraciones de la Tabla}{5}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}$f(t) = k$}{5}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}$f(t) = e^{at}$}{5}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}$f(t) = sen(kt)$}{6}{subsection.1.3.3}
-\contentsline {subsection}{\numberline {1.3.4}$f(t) = cos(kt)$}{6}{subsection.1.3.4}
-\contentsline {subsection}{\numberline {1.3.5}$f(t) = senh(kt)$}{7}{subsection.1.3.5}
-\contentsline {subsection}{\numberline {1.3.6}$f(t) = cosh(kt)$}{7}{subsection.1.3.6}
-\contentsline {subsection}{\numberline {1.3.7}$f(t) = g'(t)$}{8}{subsection.1.3.7}
-\contentsline {section}{\numberline {1.4}Ejemplos \IeC {\'U}tiles}{9}{section.1.4}
-\contentsline {subsubsection}{$f(t) = e^{t+7}$}{9}{section*.2}
-\contentsline {chapter}{\numberline {2}Ecuaciones con Laplace}{10}{chapter.2}
-\contentsline {section}{\numberline {2.1}Ecuaciones de 2do Grado}{11}{section.2.1}
-\contentsline {subsubsection}{$y'+ay=0$}{11}{section*.3}
+\contentsline {section}{\numberline {1.3}Demostraciones de la Tabla}{6}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}$f(t) = k$}{6}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}$f(t) = e^{at}$}{6}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}$f(t) = sen(kt)$}{7}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}$f(t) = cos(kt)$}{7}{subsection.1.3.4}
+\contentsline {subsection}{\numberline {1.3.5}$f(t) = senh(kt)$}{8}{subsection.1.3.5}
+\contentsline {subsection}{\numberline {1.3.6}$f(t) = cosh(kt)$}{8}{subsection.1.3.6}
+\contentsline {subsection}{\numberline {1.3.7}$f(t) = g'(t)$}{9}{subsection.1.3.7}
+\contentsline {section}{\numberline {1.4}Ejemplos \IeC {\'U}tiles}{10}{section.1.4}
+\contentsline {subsubsection}{$f(t) = e^{t+7}$}{10}{section*.2}
+\contentsline {chapter}{\numberline {2}Ecuaciones con Laplace}{11}{chapter.2}
+\contentsline {section}{\numberline {2.1}Ecuaciones de 2do Grado}{12}{section.2.1}
+\contentsline {subsubsection}{$y'+ay=0$}{12}{section*.3}
+\contentsline {subsubsection}{$y''+4y'+4y=t^2$}{12}{section*.4}
