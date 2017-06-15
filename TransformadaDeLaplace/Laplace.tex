@@ -2,50 +2,121 @@
 % ************************     	TRANFORMADA DE LAPLACE	  ********************************
 % ****************************************************************************************
 
-
 % =======================================================
 % =======         HEADER FOR DOCUMENT        ============
 % =======================================================
-    \documentclass[12pt]{report}                                %Type of docuemtn and size of font
-    \usepackage[margin=1.2in]{geometry}                         %Margins
-    \usepackage{hyperref}                                       %Create MetaData for a PDF
+    % *********   DOCUMENT ITSELF   **************
+    \documentclass[12pt]{report}                                    %Type of docuemtn and size of font
+    \usepackage[margin=1.2in]{geometry}                             %Margins and Geometry pacakge
+    \usepackage{ifthen}                                             %Allow simple programming
+    \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
+    \setlength{\parindent}{0pt}                                     %Eliminate ugly indentation
+    \author{Oscar Andrés Rosas}                                     %Who I am
 
-    \usepackage[spanish]{babel}                                 %Please use spanish
-    \usepackage[utf8]{inputenc}                                 %Please use spanish 
-    \usepackage[T1]{fontenc}                                    %Please use spanish
+    % *********   LANGUAJE AND UFT-8   *********
+    \usepackage[spanish]{babel}                                     %Please use spanish
+    \usepackage[utf8]{inputenc}                                     %Please use spanish - UFT
+    \usepackage[T1]{fontenc}                                        %Please use spanish
 
-    \usepackage{amsthm, amssymb, amsfonts, mathrsfs}            %Make math beautiful
-    \usepackage[fleqn]{amsmath}                                 %Please make equations left
-    \decimalpoint                                               %Make math beautiful
-    \setlength{\parindent}{0pt}                                 %Eliminate ugly indentation
+    % *********   MATH AND HIS STYLE  *********
+    \usepackage{amsthm, amssymb, amsfonts, mathrsfs}                %Make math beautiful
+    \usepackage[fleqn]{amsmath}                                     %Please make equations left
+    \decimalpoint                                                   %Use decimal point
 
-    \usepackage{graphicx}                                       %Allow to create graphics
-    \usepackage{wrapfig}                                        %Allow to create images
-    \graphicspath{ {Graphics/} }                                %Where are the images :D
-    \usepackage{listings}                                       %We will be using code here
-    \usepackage[inline]{enumitem}                               %We will need to enumarate
+    % *********   GRAPHICS AND IMAGES *********
+    \usepackage{graphicx}                                           %Allow to create graphics
+    \usepackage{wrapfig}                                            %Allow to create images
+    \graphicspath{ {Graphics/} }                                    %Where are the images :D
 
-    \usepackage{fancyhdr}                                       %Lets make awesome headers/footers
-    \usepackage{tasks}                                          %Horizontal lists
-    \usepackage{longtable}                                      %Lets make tables awesome
+    % *********   LISTS AND TABLES ***********
+    \usepackage{listings}                                           %We will be using code here
+    \usepackage[inline]{enumitem}                                   %We will need to enumarate
+    \usepackage{tasks}                                              %Horizontal lists
+    \usepackage{longtable}                                          %Lets make tables awesome
 
-    \renewcommand{\footrulewidth}{0.5pt}                        %We will need this!
-    \setlength{\headheight}{16pt}                               %We will need this!
-    \setlength{\parskip}{0.5em}                                 %We will need this!
-    \pagestyle{fancy}                                           %Lets make awesome headers/footers
-    \lhead{\footnotesize{\leftmark}}                            %Headers!
-    \rhead{\footnotesize{\rightmark}}                           %Headers!
-    \lfoot{Compilando Conocimiento}                             %Footers!
-    \rfoot{Oscar Rosas}                                         %Footers!
 
-    \author{Oscar Andrés Rosas}                                 %Who I am
+    % *********   HEADERS AND FOOTERS ********
+    \usepackage{fancyhdr}                                           %Lets make awesome headers/footers
+    \pagestyle{fancy}                                               %Lets make awesome headers/footers
+    \setlength{\headheight}{16pt}                                   %Top line
+    \setlength{\parskip}{0.5em}                                     %Top line
+    \renewcommand{\footrulewidth}{0.5pt}                            %Bottom line
 
+    \lhead{                                                         %Left Header
+        \hyperlink{chapter.\arabic{chapter}}                        %Make a link to the current chapter
+        {\normalsize{\textsc{\nouppercase{\leftmark}}}}             %And fot it put the name
+    }
+
+    \rhead{                                                         %Right Header
+        \hyperlink{section.\arabic{chapter}.\arabic{section}}       %Make a link to the current chapter
+            {\footnotesize{\textsc{\nouppercase{\rightmark}}}}      %And fot it put the name
+    }
+
+    \rfoot{\textsc{\small{\hyperref[sec:Index]{Ve al Índice}}}}    %This will always be a footer  
+
+    \fancyfoot[L]{                                                  %Algoritm for a changing footer
+        \ifthenelse{\isodd{\value{page}}}                           %IF ODD PAGE:
+            {\href{https://compilandoconocimiento.com/yo/}          %DO THIS:
+                {\footnotesize                                      %Send the page
+                    {\textsc{Oscar Andrés Rosas}}}}                 %Send the page
+            {\href{https://compilandoconocimiento.com}              %ELSE DO THIS: 
+                {\footnotesize                                      %Send the author
+                    {\textsc{Compilando Conocimiento}}}}            %Send the author
+    }
+    
+    
+    
 % ========================================
 % ===========   COMMANDS    ==============
 % ========================================
-    \DeclareMathOperator \Real {\mathbb{R}}                     %The real numbers
-    \DeclareMathOperator \Naturals {\mathbb{N}}                 %The real numbers
-    \DeclareMathOperator \LinealTransformation {\mathcal{T}}    %A Cool T, that's it!
+
+    % =====  NUMBER THEORY  ==========
+    \DeclareMathOperator \Real {\mathbb{R}}                         %Use: \Real por Notation
+    \DeclareMathOperator \Complex {\mathbb{C}}                      %Use: \Complex por Notation
+    \DeclareMathOperator \Naturals {\mathbb{N}}                     %Use: \Naturals por Notation
+    \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool space
+
+    % =====  VECTORS  ================
+    \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
+        \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
+    }
+    \newcommand{\lVector}[1]{                                       %Use: \lVector {Matrix Notation} use parentesis
+        \ensuremath{\begin{vmatrix}#1\end{vmatrix}}                 %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
+    }
+    \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
+        \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
+    }
+
+    %====== DIFFERENCIAL EQUATIONS ===
+    \newcommand{\LaplaceTransformation}[1]{                         %Use: \Vector {Matrix Notation} no parentesis
+        \mathscr{L} \left\{ #1 \right\}                             %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
+    }
+
+    \newcommand{\InverseLaplaceTransformation}[1]{                  %Use: \Vector {Matrix Notation} no parentesis
+        \mathscr{L}^1 \left\{ #1 \right\}                           %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
+    }
+
+    %====== LINEAL ALGEBRA ==========
+    \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+
+
+    %*********************************
+    %****  TEMPORAL COMMANDS *********
+    %*********************************
+    \newcommand{\Laplace}[1]{                                      
+        \LaplaceTransformation{#1}
+    }
+
+    \newcommand{\InverseLaplace}[1]{                           
+        \InverseLaplaceTransformation{#1}
+    }
+
+
+
+
+
+
+
 
 
 
@@ -82,6 +153,8 @@
 % ========                INDICE              =========
 % =====================================================
 \tableofcontents{}
+\label{sec:Index}
+
 \clearpage
 
 % ======================================================================================
@@ -94,15 +167,13 @@
     % ============           DEFINICION            ========
     % =====================================================
     \section{Definición}
-        Dada una función f(t) definida para toda $t \geq 0$ la tranformada de
-        Laplace de f es la función F(s) definida de la Siguiente manera:
+        Dada una función $f(t)$ definida para toda $t \geq 0$ la tranformada de
+        Laplace de $f(t)$ es la función $F(s)$ definida de la Siguiente manera:
 
         \begin{equation}   
-            \mathscr{L}\{f(t)\} = F(s) = \int_0^\infty e^{-st} f(t) dt 
+            \Laplace{f(t)} = F(s) = \int_0^\infty e^{-st} f(t) dt 
         \end{equation}    
 
-
-        en todos los valores de S para los cuales la Integral Impropia converge.
         Recuerda que una Integral Impropia:
 
         \begin{equation*}   
@@ -118,10 +189,10 @@
 
         \begin{longtable}{p{60mm} || p{70mm}}
             \renewcommand{\arraystretch}{1.5}
-            \Huge $f(t)$ & \Huge $\mathscr{L}\{f(t)\} = F(s)$                                                       \\ [1.5ex] 
+            \Huge $f(t)$ & \Huge $\Laplace{f(t)} = F(s)$                                                            \\ [1.5ex] 
             \hline\hline                                                                                            \\
             \endfirsthead   
-            \Huge $f(t)$ & \Huge $\mathscr{L}\{f(t)\} = F(s)$                                                       \\ [1.5ex]
+            \Huge $f(t)$ & \Huge $\Laplace{f(t)} = F(s)$                                                            \\ [1.5ex]
             \hline\hline                                                                   
             \endhead
 
@@ -132,8 +203,8 @@
             \Large $cos(kt)$                         &\Large      $\dfrac{s}{s^2+k^2}$                              \\ [3.0ex]
             \Large $senh(kt)$                        &\Large      $\dfrac{k}{s^2-k^2}$                              \\ [3.0ex]
             \Large $cosh(kt)$                        &\Large      $\dfrac{s}{s^2-k^2}$                              \\ [3.0ex]
-            \Large $y'(t)$                           &\Large      $s[\mathscr{L}\{y(t)\}] -y(0)$                    \\ [3.0ex]
-            \Large $y''(t)$                          &\Large      $s^2[\mathscr{L}\{y(t)\}] -sy(0) -y'(0)$          \\ [3.0ex]
+            \Large $y'(t)$                           &\Large      $s[\Laplace{y(t)}] -y(0)$                         \\ [3.0ex]
+            \Large $y''(t)$                          &\Large      $s^2[\Laplace{y(t)}] -sy(0) -y'(0)$               \\ [3.0ex]
 
             \Large $e^{at} \cdot t^n$                &\Large      $\dfrac{n!}{(s-a)^{n+1}}$                         \\ [3.0ex]
             \Large $e^{at} \cdot cos(kt)$            &\Large      $\dfrac{s-a}{(s-a)^2+k^2}$                        \\ [3.0ex]
